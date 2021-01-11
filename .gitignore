@@ -1,5 +1,5 @@
 buildroot
 output
-/camera.txt
 configs/*_defconfig
 board/linux.config
+log

@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_BLINKT
+	bool "python-blinkt"
+	select BR2_PACKAGE_PYTHON_RPIGPIO # runtime
+	help
+	  Python library for driving Pimoroni Blinkt!.
+
+	  http://www.pimoroni.com

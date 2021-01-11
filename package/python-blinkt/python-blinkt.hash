@@ -1,0 +1,5 @@
+# md5, sha256 from https://pypi.org/pypi/blinkt/json
+md5  5b7b18e15380ea1815b639fcb45dba7c  blinkt-0.1.2.tar.gz
+sha256  db8f54a22a7382476e4ac7531974fe01baee916b01f415bf3817c02820d59f3f  blinkt-0.1.2.tar.gz
+# Locally computed sha256 checksums
+sha256  8b4fb3198a55a8e84903bf446565a55bb9c6da5a8daef22529ad33ef6d253a7c  LICENSE.txt

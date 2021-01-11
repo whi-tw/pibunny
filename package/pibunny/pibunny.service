@@ -1,0 +1,10 @@
+[Unit]
+Description=Configure Raspberry Pi as a pibunny
+
+[Service]
+ExecStart=/usr/bin/env python3 /opt/pibunny/pibunny.py
+SyslogIdentifier=pibunny
+WorkingDirectory=/opt/pibunny
+
+[Install]
+WantedBy=basic.target

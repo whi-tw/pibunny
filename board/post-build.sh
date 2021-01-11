@@ -14,11 +14,11 @@ ln -sf /usr/lib/systemd/system/serial-getty@.service "${TARGET_DIR}"/etc/systemd
 #ln -sf /usr/lib/systemd/system/wpa_supplicant@.service "${TARGET_DIR}"/etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service
 
 if ! grep -qE '/var' "${TARGET_DIR}/etc/fstab"; then
-	echo 'tmpfs           /var            tmpfs   rw,mode=1777,size=64m' >> "${TARGET_DIR}/etc/fstab"
+	echo 'tmpfs           /var            tmpfs   rw,mode=1777,size=64m' >>"${TARGET_DIR}/etc/fstab"
 fi
 
 if ! grep -qE '/boot' "${TARGET_DIR}/etc/fstab"; then
-	echo '/dev/mmcblk0p1  /boot           vfat    ro' >> "${TARGET_DIR}/etc/fstab"
+	echo '/dev/mmcblk0p1  /boot           vfat    ro' >>"${TARGET_DIR}/etc/fstab"
 fi
 
 # Disable fsck on root
@@ -29,6 +29,4 @@ ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/sys-kernel-debug.mount
 ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/dev-mqueue.mount
 ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/systemd-update-utmp.service
 ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/systemd-update-utmp-runlevel.service
-if [[ ${TARGET_DIR} != *"raspberrypi0cam"* ]]; then
-  ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/network.service
-fi
+ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/network.service

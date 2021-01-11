@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PIBUNNY
+        bool "pibunny"
+        select BR2_PACKAGE_PYTHON3
+        select BR2_PACKAGE_DHCPD
+        help
+          Install Pibunny package
+
+          https://github.com/peterbay/uvc-gadget

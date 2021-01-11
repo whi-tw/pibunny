@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -euxo pipefail
 # Allow to overwrite default buildroot location
 BUILDROOT_DIR=${BUILDROOT_DIR:-buildroot}
 
@@ -11,14 +11,14 @@ fi
 export BOARDNAME=$1
 
 case "$BOARDNAME" in
-  raspberrypi0)
-  ;;
-  raspberrypi0w)
-  ;;
-  *)
-    echo "usage: BUILDROOT_DIR=buildroot $0 (boardname)"
-    echo "boardname: raspberrypi0, raspberrypi0w"
-    exit 1
+raspberrypi0) ;;
+
+raspberrypi0w) ;;
+
+*)
+  echo "usage: BUILDROOT_DIR=buildroot $0 (boardname)"
+  echo "boardname: raspberrypi0, raspberrypi0w"
+  exit 1
   ;;
 esac
 

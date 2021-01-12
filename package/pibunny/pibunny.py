@@ -169,6 +169,7 @@ async def main_loop(loop):
     while True:
         cfg = read_color()
         if cfg:
+            print(cfg)
             try:
                 current_task.cancel()
             except UnboundLocalError:
@@ -180,16 +181,15 @@ async def main_loop(loop):
                 ca, sa, pa = parse_args(STATES[sa[0]])
             color = parse_color(ca)
             pattern = parse_pattern(pa)
-
             current_task = loop.create_task(iface.control_led(color, pattern))
 
         await asyncio.sleep(0.1)
 
 
-# switch1 = Button(11)
+switch1 = True
 script = "armingMode.sh"
-# if switch1.value:
-#     script = "/scripts/switch1.sh"
+if switch1:
+    script = "/opt/pibunny/switch1.sh"
 
 
 subprocess.run(["/bin/bash", script])
@@ -197,9 +197,3 @@ subprocess.run(["/bin/bash", script])
 loop = asyncio.get_event_loop()
 loop.create_task(main_loop(loop))
 loop.run_forever()
-
-# TODO: do the do within the read_color loop
-
-# In theory, read the file every 100? ms, if it's changed, remove the current asyncio task, add a new one.
-
-# Maybe this could be done in the 'main loop' - just recreate the asyncio loop when there's an update.

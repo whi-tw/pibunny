@@ -1,2 +1,2 @@
-#!/bin/bash
-echo $@ > /tmp/lastled
+#!/usr/bin/env bash
+echo $@ >/tmp/lastled

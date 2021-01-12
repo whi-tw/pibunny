@@ -1,0 +1,3 @@
+[submodule "package/rspiducky/src"]
+	path = package/rspiducky/src
+	url = https://github.com/msjmeyer/rspiducky

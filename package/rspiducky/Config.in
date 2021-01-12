@@ -1,0 +1,6 @@
+config BR2_PACKAGE_RSPIDUCKY
+        bool "rspiducky"
+        help
+          Install rspiducky package
+
+          https://github.com/msjmeyer/rspiducky

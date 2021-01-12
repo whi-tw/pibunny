@@ -3,3 +3,4 @@ output
 configs/*_defconfig
 board/linux.config
 log
+udisk.vfat

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
@@ -9,10 +9,10 @@ for arg in "$@"; do
 	case "${arg}" in
 	--configure-pibunny)
 		# Configure pibunny
-		if ! grep -qE '^dtoverlay=dwc2,dr_mode=peripheral' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+		if ! grep -qE '^dtoverlay=dwc2' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
 
 			cat <<__EOF__ >>"${BINARIES_DIR}/rpi-firmware/config.txt"
-dtoverlay=dwc2,dr_mode=peripheral
+dtoverlay=dwc2
 __EOF__
 		fi
 
@@ -35,14 +35,18 @@ __EOF__
 			sed '/^root=/ s/$/ rootfstype=squashfs ro/' -i "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 		fi
 
-		if ! grep -qE 'modules-load=dwc2,g_serial' "${BINARIES_DIR}/rpi-firmware/cmdline.txt"; then
-			sed '/^root=/ s/$/ modules-load=dwc2,g_serial/' -i "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
+		if ! grep -qE 'modules-load=dwc2,libcomposite' "${BINARIES_DIR}/rpi-firmware/cmdline.txt"; then
+			sed '/^root=/ s/$/ modules-load=dwc2,libcomposite/' -i "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 		fi
 
 		# Suppress kernel output during boot
 		# if ! grep -qE 'quiet' "${BINARIES_DIR}/rpi-firmware/cmdline.txt"; then
 		# 	sed '/^root=/ s/$/ quiet/' -i "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 		# fi
+		;;
+
+	--provision-udisk)
+		cp ${BR2_EXTERNAL_PIBUNNY_PATH}/udisk.vfat ${BINARIES_DIR}/udisk.vfat
 		;;
 	esac
 

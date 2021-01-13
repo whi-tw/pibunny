@@ -1,0 +1,1 @@
+copy output/raspberrypi0w/host/arm-buildroot-linux-gnueabihf/lib/libstdc++.so.6 to rootfs/lib/

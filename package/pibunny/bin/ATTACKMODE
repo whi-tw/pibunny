@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -euo pipefail
+
+echo $(basename "$0") $@
 
 export AM_SERIAL=no
 export AM_ETHERNET=no
@@ -76,7 +78,7 @@ N="usb0"
 
 if [ "$AM_SERIAL" == "yes" ]; then
 	mkdir -p functions/acm.$N
-	systemctl start serial-getty@ttyGS0.service
+	systemctl restart serial-getty@ttyGS0.service
 fi
 
 C=1
@@ -122,5 +124,6 @@ ls /sys/class/udc >UDC
 
 if [ "$AM_ETHERNET" == "yes" ]; then
 	ifconfig $N 172.16.64.1 netmask 255.255.255.0 up
+	touch /var/dhcpd.leases
 	systemctl restart dhcpd.service
 fi

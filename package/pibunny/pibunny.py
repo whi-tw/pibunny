@@ -162,6 +162,11 @@ def read_color():
     return False
 
 
+async def run_script(script, switch):
+    script = await asyncio.create_subprocess_exec("/bin/bash", script, switch)
+    await script.wait()
+
+
 current_task = None
 
 
@@ -186,14 +191,19 @@ async def main_loop(loop):
         await asyncio.sleep(0.1)
 
 
-switch1 = True
+def get_switch():
+    return 1  # extend once I have a switch
+
+
+switch = 1
 script = "armingMode.sh"
-if switch1:
-    script = "/opt/pibunny/switch1.sh"
+switchpos = "arming"
 
-
-subprocess.run(["/bin/bash", script])
+if switch:
+    script = "/opt/pibunny/switch.sh"
+    switchpos = "switch{}".format(switch)
 
 loop = asyncio.get_event_loop()
 loop.create_task(main_loop(loop))
+loop.create_task(run_script(script, switchpos))
 loop.run_forever()

@@ -34,4 +34,3 @@ ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/dev-mqueue.mount
 ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/systemd-update-utmp.service
 ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/systemd-update-utmp-runlevel.service
 ln -sf /dev/null "${TARGET_DIR}"/etc/systemd/system/network.service
-rm "${TARGET_DIR}"/etc/systemd/system/multi-user.target.wants/dhcpd.service

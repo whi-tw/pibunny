@@ -2,6 +2,8 @@ import asyncio
 
 import blinkt
 
+blinkt.set_brightness(0.05)
+
 
 async def control_led(color, pattern):
     while True:

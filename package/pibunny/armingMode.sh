@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-LED R
+bin/LED R
 /bin/ATTACKMODE STORAGE
-LED G B
+bin/LED G B

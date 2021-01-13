@@ -1,0 +1,6 @@
+{
+    "files.watcherExclude": {
+        "**/buildroot/**": true,
+        "**/output/**": true
+    }
+}

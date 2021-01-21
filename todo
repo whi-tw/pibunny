@@ -1,0 +1,4 @@
+fix why it no longer starts up. hdmi time.
+
+
+only substantial change is in how the subprocess is created.

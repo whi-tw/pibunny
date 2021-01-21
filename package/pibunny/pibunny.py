@@ -3,6 +3,8 @@ import time
 import asyncio
 import subprocess
 
+import RPi.GPIO
+
 import blinkt_iface as iface
 
 last_color = None
@@ -192,10 +194,15 @@ async def main_loop(loop):
 
 
 def get_switch():
-    return 1  # extend once I have a switch
+    pins = [13, 16, 20, 19]
+    RPi.GPIO.setmode(RPi.GPIO.BCM)
+    RPi.GPIO.setup(pins, RPi.GPIO.IN, pull_up_down=RPi.GPIO.PUD_DOWN)
+    dec = int("".join([str(int(RPi.GPIO.input(pin))) for pin in pins]), 2)
+    return dec
 
 
-switch = 1
+switch = get_switch()
+print("switch: " + str(switch))
 script = "armingMode.sh"
 switchpos = "arming"
 
